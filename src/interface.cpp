@@ -60,24 +60,37 @@ void Interface::Show(GLFWwindow *window) {
         }
         ImGui::EndMenuBar();
     }
-    ImGui::Text("dear imgui says hello. (%s)", IMGUI_VERSION);
+    ImGui::Text("Imgui Version (%s)", IMGUI_VERSION);
 
-    // Edit 3 floats representing a color
-    ImGui::ColorEdit3("clear color", (float*)&g_ClearColor);
+      ImGuiTabBarFlags tab_bar_flags = ImGuiTabBarFlags_None;
+    if (ImGui::BeginTabBar("MyTabBar", ImGuiTabBarFlags_None))
+    {
+      if (ImGui::BeginTabItem("Display"))
+      {
+        // Edit 3 floats representing a color
+        ImGui::ColorEdit3("clear color", (float*)&g_ClearColor);
 
-    ImGui::Checkbox("Perspective Projection", &g_UsePerspectiveProjection);
+        ImGui::Checkbox("Perspective Projection", &g_UsePerspectiveProjection);
 
-    ImGui::Text("Block Settings");
-    ImGui::SliderFloat("Angle Z", &g_AngleZ, -10.0f, 10.0f);
-    ImGui::SliderFloat("Angle Y", &g_AngleY, -10.0f, 10.0f);
-    ImGui::SliderFloat("Angle X", &g_AngleX, -10.0f, 10.0f);
-
-    ImGui::Text("Frustum Settings");
-    ImGui::SliderFloat("Near Plane", &g_FrustumNearPlane, -10.0f, 10.0f);
-    ImGui::SliderFloat("Far Plane", &g_FrustumFarPlane, -10.0f, 10.0f);
-
-    ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-    ImGui::End();
+        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+        ImGui::EndTabItem();
+      }
+      if (ImGui::BeginTabItem("Models"))
+      {
+        ImGui::SliderFloat("Angle Z", &g_AngleZ, -10.0f, 10.0f);
+        ImGui::SliderFloat("Angle Y", &g_AngleY, -10.0f, 10.0f);
+        ImGui::SliderFloat("Angle X", &g_AngleX, -10.0f, 10.0f);
+        ImGui::EndTabItem();
+      }
+      if (ImGui::BeginTabItem("Frustum"))
+      {
+        ImGui::SliderFloat("Near Plane", &g_FrustumNearPlane, -10.0f, 10.0f);
+        ImGui::SliderFloat("Far Plane", &g_FrustumFarPlane, -10.0f, 10.0f);
+        ImGui::EndTabItem();
+      }
+      ImGui::EndTabBar();
+    }
+  ImGui::End();
   }
 
   fileDialog.Display();

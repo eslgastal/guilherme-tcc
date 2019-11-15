@@ -101,4 +101,5 @@ run: all
 	cd ./bin;	./$(EXE);
 
 clean:
+	rm -rf $(EXE) $(OBJS);
 	cd ./bin;	rm -rf $(EXE) $(OBJS);

@@ -2,7 +2,6 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-#include "imfilebrowser.h"
 
 // About Desktop OpenGL function loaders:
 //  Modern desktop OpenGL doesn't have a standard portable header file to load OpenGL function pointers.
@@ -24,6 +23,10 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <iostream>
+#include <array>
+#include <functional>
+#include <memory>
 
 // Headers da biblioteca GLM: criação de matrizes e vetores.
 #include <glm/mat4x4.hpp>
@@ -32,6 +35,9 @@
 
 // Headers da biblioteca para carregar modelos obj
 #include <tiny_obj_loader.h>
+
+// Headers extras para funções addon para a interface
+#include "imfilebrowser.h"
 
 #ifndef CLASS_STRUCTS
 #define CLASS_STRUCTS
