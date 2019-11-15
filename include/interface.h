@@ -13,8 +13,11 @@
 class Interface {
   private:
     bool m_show_demo_window;
+    ImGui::FileBrowser fileDialog;
+
     void Start();
     void SetInterface(bool show_demo_window);
+    void ShowExampleMenuFile();
   public:
     Interface(bool show_demo_window);
     void Init(GLFWwindow *window, const char* glsl_version);

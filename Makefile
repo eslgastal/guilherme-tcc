@@ -11,7 +11,7 @@
 #   pacman -S --noconfirm --needed mingw-w64-x86_64-toolchain mingw-w64-x86_64-glfw
 #
 
-#CXX = g++
+# CXX = g++ -std=c++17
 #CXX = clang++
 
 EXE = main
@@ -28,7 +28,7 @@ LIB		:= libs
 
 CXXFLAGS = -I./libs/imgui  -I./libs/tiny_obj_loader -I./libs/KHR/
 CXXFLAGS += -g -Wall -Wformat -Wno-unknown-pragmas
-LIBS =
+LIBS =  -lstdc++fs
 
 ##---------------------------------------------------------------------
 ## OPENGL LOADER
