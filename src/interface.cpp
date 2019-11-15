@@ -30,6 +30,11 @@ void Interface::Show(GLFWwindow *window) {
   IM_ASSERT(ImGui::GetCurrentContext() != NULL && "Missing dear imgui context. Init() didn't run!");
 
   Start();
+
+  if (m_show_app_metrics)             { ImGui::ShowMetricsWindow(&m_show_app_metrics); }
+  if (m_show_app_style_editor)        { ImGui::Begin("Style Editor", &m_show_app_style_editor); ImGui::ShowStyleEditor(); ImGui::End(); }
+  if (m_show_app_about)               { ImGui::ShowAboutWindow(&m_show_app_about); }
+
   //1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
   if (m_show_demo_window)
     ImGui::ShowDemoWindow(&m_show_demo_window);
@@ -44,6 +49,13 @@ void Interface::Show(GLFWwindow *window) {
         if (ImGui::BeginMenu("Menu"))
         {
             ShowExampleMenuFile();
+            ImGui::EndMenu();
+        }
+        if (ImGui::BeginMenu("Tools"))
+        {
+            ImGui::MenuItem("Metrics", NULL, &m_show_app_metrics);
+            ImGui::MenuItem("Style Editor", NULL, &m_show_app_style_editor);
+            ImGui::MenuItem("About Dear ImGui", NULL, &m_show_app_about);
             ImGui::EndMenu();
         }
         ImGui::EndMenuBar();
@@ -116,6 +128,9 @@ void Interface::Start(){
 
 void Interface::SetInterface(bool show_demo_window){
   m_show_demo_window = show_demo_window;
+  m_show_app_metrics = false;
+  m_show_app_style_editor = false;
+  m_show_app_about = false;
 }
 
 
